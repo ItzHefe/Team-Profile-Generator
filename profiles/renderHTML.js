@@ -54,7 +54,7 @@ const renderIntern = intern => {
 };
 
 const renderMain = html => {
-  const template = fs.readFileSync(path.resolve(empTemp, "main.html"), "utf8");
+  const template = fs.readFileSync(path.resolve(empTemp, "layout.html"), "utf8");
   return replacePlaceholders(template, "team", html);
 };
 

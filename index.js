@@ -1,6 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 let teamArr = [];
+const render = require('./profiles/renderHTML');
 
 const Manager = require("./profiles/Manager");
 const Engineer = require("./profiles/Engineer");
@@ -120,7 +121,7 @@ function internQ() {
 }
 
 function buildTeam() {
-  fs.writeFileSync('index.html', runRender(teamArr),'utf-8')
+  fs.writeFileSync('index.html', render(teamArr),'utf-8')
 }
 
 askManager();
