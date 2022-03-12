@@ -2,9 +2,9 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 let teamArr = [];
 
-const Manager = require("./lib/Manager");
-const Engineer = require("./lib/Engineer");
-const Intern = require("./lib/Intern");
+const Manager = require("./profiles/Manager");
+const Engineer = require("./profiles/Engineer");
+const Intern = require("./profiles/Intern");
 
 function askManager() {
   return inquirer.prompt([
