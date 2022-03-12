@@ -29,159 +29,99 @@ function askManager() {
       message: 'What is your office number?',
     },
   ])
-  // ask the manager related questions - ID, Email, Office
-  // store the manager in the team array
-  // call the mainMenu() function
-  .then(answers => { 
-    teamArr.push(answers)
-    console.log(teamArr)
-    mainMenu()
-  })
- 
+    // ask the manager related questions - ID, Email, Office
+    // store the manager in the team array
+    // call the mainMenu() function
+    .then(answers => {
+      let manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+      teamArr.push(manager)
+      mainMenu()
+    })
 }
 
 function mainMenu() {
   return inquirer.prompt([
-  // prompt the user with "What would you like to do next?"
-  {
-    type: 'list',
-    message: 'Add a new team member or build the team?',
-    name: 'mgrchoice',
-    choices: ["Engineer", "Intern", "Build the team!"]
-  },
-  // you can either add engineer, add intern or quit and build the team
-])
-.then((answers) => {
-  if (answers.mgrchoice === "Engineer") engineerQ();
-  
-  if (answers.mgrchoice === "Intern") internQ();
+    // prompt the user with "What would you like to do next?"
+    {
+      type: 'list',
+      message: 'Add a new team member or build the team?',
+      name: 'mgrchoice',
+      choices: ["Engineer", "Intern", "Build the team!"]
+    },
+    // you can either add engineer, add intern or quit and build the team
+  ])
+    .then((answers) => {
+      if (answers.mgrchoice === "Engineer") engineerQ();
 
-  if (answers.mgrchoice === "Build the team!") buildTeam();
-})
+      if (answers.mgrchoice === "Intern") internQ();
+
+      if (answers.mgrchoice === "Build the team!") buildTeam();
+    })
 }
 
 function engineerQ() {
   return inquirer.prompt([
     {
-      type: 'input',
-      name: 'name',
-      message: 'What is the employees name?',
+      type: "input",
+      message: "What is your engineer's name?",
+      name: "name",
     },
     {
-      type: 'input',
-      name: 'Title',
-      message: 'What is your employees title?',
+      type: "input",
+      message: "What is your engineer's id?",
+      name: "id",
     },
     {
-      type: 'input',
-      name: 'email',
-      message: 'What is your employees email?',
+      type: "input",
+      message: "What is your engineer's email?",
+      name: "email",
     },
     {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
-    },
+      type: "input",
+      message: "What is your engineer's GitHub username?",
+      name: "github",
+    }
   ])
-  .then(answers => {
-    teamArr.push(answers)
-    console.log(teamArr)
-    mainMenu()
-  })
+    .then(answers => {
+      let engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+      teamArr.push(engineer)
+      mainMenu()
+    })
 }
 
 function internQ() {
   return inquirer.prompt([
     {
-      type: 'input',
-      name: 'name',
-      message: 'What is the employees name?',
+      type: "input",
+      message: "What is your intern's name?",
+      name: "name",
     },
     {
-      type: 'input',
-      name: 'Title',
-      message: 'What is your employees title?',
+      type: "input",
+      message: "What is your intern's id?",
+      name: "id",
     },
     {
-      type: 'input',
-      name: 'email',
-      message: 'What is your employees email?',
+      type: "input",
+      message: "What is your intern's email?",
+      name: "email",
     },
     {
-      type: 'input',
-      name: 'github',
-      message: 'Enter your GitHub Username',
-    },
-    {
-      type: 'input',
-      name: 'linkedin',
-      message: 'Enter your LinkedIn URL.',
-    },
+      type: "input",
+      message: "What school does the Intern attend?",
+      name: "school",
+    }
   ])
-  .then(answers => {
-    teamArr.push(answers)
-    console.log(teamArr)
-    mainMenu()
-  })
+    .then(answers => {
+      let intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+      teamArr.push(intern)
+      mainMenu()
+    })
 }
 
-
 function buildTeam() {
-fs.writeFileSync('index.html', generateHTML(teamArr))
-console.log(teamArr)
-teamArr.map(console.log(teamArr.name))
-};
-
-
-const generateHTML = (teamArr) => //build out the HTML and use .map to loop through the teamArr and drop the members on the page in a card. map function to append new cards per person input added.
-  `<!DOCTYPE html>
-  <html lang="en">
-  
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-  
-      <title>Document</title>
-  </head>
-  
-  <body>
-  ${teamArr.map(person => {
-    return ``
-  })}
-      <nav class="navbar navbar-dark bg-primary justify-content-center">
-          <span class="navbar-text text-white font-weight-bolder">
-              My Team
-          </span>
-      </nav>
-  
-      <ul class="list-group container">
-          <div class="row">
-              <div class="card text-white bg-primary col-sm-2 col-md-3 col-lg-4 ml-2 mb-3 p-2 mt-2 rounded"
-                  style="max-width: 18rem;" id="empCards">
-                  <div class="card-header" id="personCard">
-                      <h5 class="card-title"></i>Example Name</h5>
-                  </div>
-                  <div class="card-body" id="result-content">
-                      <ul class="list-group list-group-flush">
-                          <li class="list-group-item text-dark">A item</li>
-                          <li class="list-group-item text-dark">A second item</li>
-                          <li class="list-group-item text-dark">A third item</li>
-                      </ul>
-                  </div>
-              </div>
-      </ul>
-  
-  
-  </body>
-  
-  </html>`;
+  fs.writeFileSync('index.html', runRender(teamArr),'utf-8')
+}
 
 askManager();
 
