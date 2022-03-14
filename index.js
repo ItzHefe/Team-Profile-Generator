@@ -16,7 +16,7 @@ function askManager() {
     },
     {
       type: 'input',
-      name: 'MgrID',
+      name: 'id',
       message: 'What is your ID number?',
     },
     {
