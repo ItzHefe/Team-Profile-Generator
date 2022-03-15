@@ -125,12 +125,3 @@ function buildTeam() {
 }
 
 askManager();
-
-// peopleArr.map(person => {
-//   return `<h1>${person.name}</h1>
-// <h3>${person.age}</h3>`;
-// })
-
-//${teamArr.map()}
-
-//break apart the HTML to create the cards with their own functions and appending them to a bootstrap container to keep it neat looking
