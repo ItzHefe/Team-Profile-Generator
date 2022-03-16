@@ -27,7 +27,7 @@ A program to create a HTML page with a team profile breakdown.
 Jeff Jarvis
 
 ## Questions:
-If you have any question please email me at jeffrey.jarvis32@gmail.com or you can check out my GitHub at itzhefe
+If you have any question please email me at jeffrey.jarvis32@gmail.com or you can check out my GitHub at https://github.com/ItzHefe
 
 ## How to Contribute:
 <!--- Replace contributions to your own if you like --->
